@@ -1,0 +1,10 @@
+:root { --navy: #0a2540; --navy-light: #163a63; }
+body { background: #f3f6fb; color: #1b2733; font-family: system-ui, "Segoe UI", Roboto, sans-serif; }
+.bg-navy { background: var(--navy); }
+.btn-navy { background: var(--navy); color: #fff; border: 0; }
+.btn-navy:hover { background: var(--navy-light); color: #fff; }
+.card { border: 0; border-radius: 14px; box-shadow: 0 4px 18px rgba(10, 37, 64, .08); }
+.hero { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: #fff; border-radius: 16px; padding: 3rem 1.5rem; }
+.qr-box img { width: 260px; max-width: 100%; background: #fff; padding: 10px; border-radius: 10px; }
+.otp-input { font-size: 1.8rem; letter-spacing: .5rem; text-align: center; }
+.code-list { font-family: monospace; font-size: 1.1rem; }
