@@ -1,0 +1,12 @@
+{
+  "name": "quicklybestone/group12-qr-auth",
+  "description": "Group 12 - Secure QR registration and 2FA system (PHP + Neon + Vercel)",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "ext-pdo": "*",
+    "ext-pdo_pgsql": "*",
+    "ext-sodium": "*",
+    "chillerlan/php-qrcode": "^5.0"
+  }
+}

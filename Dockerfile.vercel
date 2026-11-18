@@ -1,0 +1,18 @@
+# Build stage: install Composer packages
+FROM composer:2 AS dependencies
+WORKDIR /app
+COPY composer.json composer.lock* ./
+RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platform-reqs
+
+# Runtime stage: FrankenPHP (PHP 8.4 + Caddy web server)
+FROM dunglas/frankenphp:1-php8.4-bookworm
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+ && install-php-extensions pdo_pgsql
+WORKDIR /app
+COPY --from=dependencies /app/vendor ./vendor
+COPY app ./app
+COPY public ./public
+COPY Caddyfile /etc/frankenphp/Caddyfile
+# Only /app/public is web-accessible (see Caddyfile). No .env is copied:
+# Vercel injects environment variables at runtime.
+CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]

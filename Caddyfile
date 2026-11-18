@@ -1,0 +1,12 @@
+:{$PORT:80} {
+    root * /app/public
+    encode zstd gzip
+    php_server
+
+    # Unknown URLs show our custom 404 page
+    handle_errors {
+        @notfound `{err.status_code} == 404`
+        rewrite @notfound /404.php
+        php_server
+    }
+}
